@@ -1,0 +1,4 @@
+User-agent: *
+Disallow:
+
+Sitemap: https://sachindots.github.io//sitemap.xml
