@@ -51,7 +51,16 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y imagemagick
           pip install jupyter
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2'
 
+      - name: Install dependencies
+        run: bundle install --jobs 4 --retry 3
+
+      - name: Build the site
+        run: bundle exec jekyll build
       - name: Ensure Jekyll is installed
         run: gem install jekyll
       - name: Build with Jekyll
