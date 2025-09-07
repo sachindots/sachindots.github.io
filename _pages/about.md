@@ -12,8 +12,8 @@ profile:
 
 ---
 
-I'm Sachin, an aspiring Analyst with a passion for Cybersecurity and Artificial Intelligence. Alongside my experience as a freelance Penetration Tester at IP Security Labs and Operations Coordinator at ATmega Software Technologies LLP, where I managed operations and implemented cybersecurity measures, I’ve always had a strong interest in Machine Learning on Cybersecurity Domain.
+💻 I’m Sachin, working as an AI-focused Python Developer, with experience across VAPT (Cyraacs Internship) and freelance penetration testing (IP Security Labs). I also served as Operations Coordinator at ATmega Software Technologies, where I supported projects and security integration.
 
-In my independent research, I focus on AI-Driven Cybersecurity, and I’ve built projects like a Machine Learning-based Firewall and a CNN-powered Malware Detection system. These experiences have sharpened my skills in both data analysis and AI, which I’m eager to apply in an analyst role.
+🔒 My core interest lies in Cybersecurity & AI—I’ve built projects like an ML-based Firewall and CNN-powered Malware Detection, and I’m now seeking opportunities in cybersecurity analysis, pentesting, and AI-driven defense.
 
-Currently, I’m actively seeking opportunities in ML Tech where I can blend my analytical mindset with my hands-on experience in cybersecurity and AI, while continuing my research.
+📌 Long-term, I aim to move into research on AI-driven cybersecurity solutions to tackle evolving digital threats.
