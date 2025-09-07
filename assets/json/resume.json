@@ -31,28 +31,32 @@
     ]
   },
   "work": [
-    {
-      "name": "ATMEGA Software Technologies",
-      "position": "Operations Coordinator",
-      "startDate": "2023-05-01",
-      "endDate": "2023-12-31",
-      "summary": "Managed daily operations and coordinated with project executives to streamline workflows and allocate tasks effectively.",
-      "highlights": [
-        "Improved task delegation for the development team, enhancing efficiency",
-        "Ensured smooth workflow execution within a dynamic team environment"
-      ]
-    },
-    {
-      "name": "IP Security Labs",
-      "position": "Freelance Penetration Tester",
-      "startDate": "2022-06-01",
-      "endDate": "Present",
-      "summary": "Specialized in vulnerability assessments and implementing robust security measures for startups and non-profits.",
-      "highlights": [
-        "Identified critical vulnerabilities, securing client systems against potential threats",
-        "Leveraged tools like Burp Suite, Metasploit, and Kali Linux to ensure comprehensive testing"
-      ]
-    }
+   
+
+{
+  "name": "Utsaha Technologies",
+  "position": "AI Python Developer",
+  "startDate": "2025-05-01",
+  "endDate": "Present",
+  "summary": "Developing AI-powered solutions and scalable Python applications for Healthcare Consulting Services.",
+  "highlights": [
+    "Built and optimized Python-based AI models for real-world use cases",
+    "Enhanced system performance through automation and data-driven solutions",
+    "Migration of Java Spring Boot Codebase to Python FastAPI"
+  ]
+},
+{
+  "name": "CyRAACS",
+  "position": "VAPT Intern",
+  "startDate": "2024-12-25",
+  "endDate": "2025-03-10",
+  "summary": "Worked on Infrastructure Vulnerability Assessment and Penetration Testing, assisting senior analysts in identifying and mitigating risks for clients.",
+  "highlights": [
+    "Performed web application and network security assessments under supervision",
+    "Utilized tools like Burp Suite, Nessus, and Nmap for identifying vulnerabilities",
+    "Documented findings and contributed to client security reports"
+  ]
+}
   ],
   "education": [
     {
