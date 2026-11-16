@@ -94,6 +94,39 @@ li{margin:4px 0}
 .posts a span{color:var(--muted);font-size:14px;white-space:nowrap}
 
 footer{padding:40px 0 64px;border-top:1px solid var(--line);font-size:14px;color:var(--muted)}
+
+/* Building-now line */
+.now{font-size:15px;color:var(--muted);margin:0 0 20px}
+.now a{color:var(--accent);font-weight:500}
+.now .now-link{white-space:nowrap}
+
+/* Featured project (ArimaOps) */
+.project.featured{border-color:color-mix(in srgb,var(--accent) 45%,var(--line));box-shadow:0 1px 0 var(--line),0 0 0 1px color-mix(in srgb,var(--accent) 12%,transparent)}
+.project.featured::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;border-radius:10px 0 0 10px;background:var(--accent)}
+.project{position:relative}
+.badge{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);background:var(--accent-soft);border-radius:999px;padding:2px 9px;vertical-align:2px}
+.project .links{font-size:14px;color:var(--muted);margin-top:14px}
+.project .links a{color:var(--accent)}
+
+/* ---- Motion: gated on html[data-anim], set by script only when the viewer
+   has no reduced-motion preference. No JS / reduced motion => fully visible, static. ---- */
+.project,.metric,.btn{transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease}
+html[data-anim] .project:hover{transform:translateY(-3px);box-shadow:0 10px 30px color-mix(in srgb,var(--text) 10%,transparent)}
+html[data-anim] .btn:hover{transform:translateY(-1px)}
+nav .links a{position:relative}
+nav .links a::after{content:"";position:absolute;left:0;right:100%;bottom:-4px;height:1.5px;background:var(--accent);transition:right .25s ease}
+nav .links a:hover::after{right:0}
+nav .links a:hover{color:var(--accent)}
+
+html[data-anim] .reveal{opacity:0;transform:translateY(16px)}
+html[data-anim] .reveal.in{opacity:1;transform:none;transition:opacity .6s ease,transform .6s cubic-bezier(.2,.7,.2,1)}
+html[data-anim] header .reveal{transition-delay:calc(var(--i,0) * .07s)}
+
+@media (prefers-reduced-motion:reduce){
+  html[data-anim] .reveal{opacity:1!important;transform:none!important}
+  html[data-anim] .project:hover,html[data-anim] .btn:hover{transform:none}
+  nav .links a::after{transition:none}
+}
 </style>
 </head>
 <body>
@@ -113,6 +146,7 @@ footer{padding:40px 0 64px;border-top:1px solid var(--line);font-size:14px;color
     <div class="status">Open to software, AI &amp; backend roles · Chennai / Bangalore / Remote</div>
     <h1>Sachin Selvaraju</h1>
     <p class="role">Software Engineer · Backend, AI &amp; Security</p>
+    <p class="now">Currently building <a href="https://sachindots.github.io/arimaops/">ArimaOps</a> — AI agent teams you run from your phone. <a class="now-link" href="https://sachindots.github.io/arimaops/">See it&nbsp;↗</a></p>
     <p class="lede">I design and build systems end to end: the Python services and data pipelines underneath, the AI models on top, and the security that keeps them honest. I've evaluated LLMs at Amazon, migrated production microservices, and trained 200+ students on cloud infrastructure. I care most about how the pieces fit together.</p>
     <div class="cta">
       <a class="btn primary" href="resume.pdf" download>Download resume</a>
@@ -177,6 +211,14 @@ footer{padding:40px 0 64px;border-top:1px solid var(--line);font-size:14px;color
 
   <section id="projects">
     <h2>Projects</h2>
+
+    <article class="project featured">
+      <header><h3><a href="https://github.com/sachindots/arimaops">ArimaOps: AI agent team orchestrator</a> <span class="badge">Live</span></h3><span class="meta">TypeScript · 2026</span></header>
+      <p>A self-hosted orchestrator that runs a team of AI agents per project: a lead that plans and assigns, workers that build in their own containers, a reviewer and a second model that check each other, and gates that decide when a task is really done. Ships templates for dev, security, research and marketing work, a real-time HUD, and a phone app so you can steer and approve from any screen.</p>
+      <div class="result">Open source · 8 team templates · a security team found real bugs in OWASP Juice Shop, a dev team shipped a data pipeline across 6 reviewed PRs</div>
+      <div class="tags"><span>TypeScript</span><span>Node.js</span><span>React</span><span>SQLite</span><span>Neo4j</span><span>Docker</span></div>
+      <p class="links"><a href="https://sachindots.github.io/arimaops/">Website&nbsp;↗</a> · <a href="https://sachindots.github.io/arimaops/pipewell.html">Case study&nbsp;↗</a> · <a href="https://github.com/sachindots/arimaops">GitHub&nbsp;↗</a></p>
+    </article>
 
     <article class="project">
       <header><h3><a href="https://github.com/sachindots/MalwareDetectorAI">MalBro: hybrid malware detector</a></h3><span class="meta">Python · 2026</span></header>
@@ -265,6 +307,46 @@ document.getElementById('theme').onclick = () => {
   root.dataset.theme = dark ? 'light' : 'dark';
   try { localStorage.setItem('theme', root.dataset.theme); } catch {}
 };
+
+/* Motion: only when the viewer has no reduced-motion preference.
+   No JS or reduced motion => everything is visible and static. */
+(function () {
+  try {
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    root.setAttribute('data-anim', '');
+    // Hero: reveal on load, staggered.
+    var hero = [].slice.call(document.querySelectorAll('header > *'));
+    hero.forEach(function (el, i) { el.classList.add('reveal'); el.style.setProperty('--i', i); });
+    requestAnimationFrame(function () { requestAnimationFrame(function () { hero.forEach(function (el) { el.classList.add('in'); }); }); });
+    // The rest: reveal as they scroll into view.
+    var sel = '.metrics, section > h2, #what .pillars > div, #work .item, #projects .project, #skills .skills, #education .item, #community .item, #writing .posts a, #contact .lede, #contact .cta';
+    var els = [].slice.call(document.querySelectorAll(sel));
+    els.forEach(function (el) { el.classList.add('reveal'); });
+    var stats = [].slice.call(document.querySelectorAll('.metric b'));
+    var pending = els.slice();
+    function sweep() {
+      var h = innerHeight || document.documentElement.clientHeight;
+      pending = pending.filter(function (el) { if (el.getBoundingClientRect().top < h * 0.92) { el.classList.add('in'); return false; } return true; });
+      stats = stats.filter(function (el) { if (el.getBoundingClientRect().top < h * 0.9) { count(el); return false; } return true; });
+      if (!pending.length && !stats.length) { removeEventListener('scroll', onScroll); removeEventListener('resize', sweep); }
+    }
+    var ticking = false;
+    function onScroll() { if (ticking) return; ticking = true; requestAnimationFrame(function () { ticking = false; sweep(); }); }
+    addEventListener('scroll', onScroll, { passive: true });
+    addEventListener('resize', sweep);
+    sweep();
+    function count(el) {
+      var m = el.textContent.trim().match(/^([^0-9]*)([0-9]+(?:\.[0-9]+)?)(.*)$/);
+      if (!m) return;
+      var pre = m[1], target = parseFloat(m[2]), suf = m[3], dec = (m[2].split('.')[1] || '').length, t0 = null;
+      requestAnimationFrame(function step(ts) {
+        if (!t0) t0 = ts; var p = Math.min(1, (ts - t0) / 1000), v = target * (1 - Math.pow(1 - p, 3));
+        el.textContent = pre + v.toFixed(dec) + suf;
+        if (p < 1) requestAnimationFrame(step); else el.textContent = pre + target.toFixed(dec) + suf;
+      });
+    }
+  } catch (e) { /* leave the page static and visible */ }
+})();
 </script>
 </body>
 </html>
